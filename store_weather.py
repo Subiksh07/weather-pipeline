@@ -1,8 +1,8 @@
-import requests
-import psycopg2
-from datetime import datetime
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
-API_KEY = "b1756e4521b2746c1b0ecae96fc3b76d"
+API_KEY = os.getenv("WEATHER_API_KEY")
 CITY = "Chennai"
 
 # Step 1 - Fetch weather data
@@ -28,7 +28,7 @@ conn = psycopg2.connect(
     port="5432",
     database="weather_db",
     user="postgres",
-    password="subi"
+    password=os.getenv("POSTGRES_PASSWORD")
 )
 cursor = conn.cursor()
 
